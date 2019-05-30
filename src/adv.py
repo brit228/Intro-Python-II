@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,48 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+if __name__ == "__main__":
+    p = Player(room['outside'])
+    end = False
+    while True:
+        print(p.location.name)
+        print(p.location.description)
+        print()
+        while True:
+            direc = input("Input direction:    ")
+            print()
+            if direc == 'n':
+                if hasattr(p.location, 'n_to'):
+                    p.location = p.location.n_to
+                    break
+                else:
+                    print("Incorrect direction")
+                    print()
+            elif direc == 'e':
+                if hasattr(p.location, 'e_to'):
+                    p.location = p.location.e_to
+                    break
+                else:
+                    print("Incorrect direction")
+                    print()
+            elif direc == 's':
+                if hasattr(p.location, 's_to'):
+                    p.location = p.location.s_to
+                    break
+                else:
+                    print("Incorrect direction")
+                    print()
+            elif direc == 'w':
+                if hasattr(p.location, 'w_to'):
+                    p.location = p.location.w_to
+                    break
+                else:
+                    print("Incorrect direction")
+                    print()
+            elif direc == 'q':
+                print("Thanks for playing!")
+                end = True
+                break
+        if end:
+            break
